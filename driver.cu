@@ -7,7 +7,7 @@
 
 #include "cuda_timer.h"
 #include "random.h"
-#include <unittest/unittest.h>
+#include "demangle.hpp"
 
 // Algos
 #include "adjacent_difference.h"
@@ -43,6 +43,12 @@
 #include "uninitialized_fill.h"
 #include "unique.h"
 
+template<typename T>
+std::string name_of_type()
+{
+  return std::string(demangle(typeid(T).name()));
+}
+
 template <typename Vector>
 void filter(Vector& times)
 {
@@ -58,7 +64,7 @@ void filter(Vector& times)
 template <typename Test, typename Vector>
 void report(Test& test, Vector& times)
 {
-  std::string test_name = unittest::type_name<Test>();
+  std::string test_name = name_of_type<Test>();
 
   if (test_name.find("<") != std::string::npos)
   {
