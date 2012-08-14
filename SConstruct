@@ -148,13 +148,16 @@ def tbb_installation(env):
 
 def inc_paths(env):
   """Returns a list of include paths needed by the compiler"""
-  thrust_inc_path = Dir('.')
   cuda_inc_path = cuda_installation()[2]
   tbb_inc_path  = tbb_installation(env)[2]
 
   # note that the thrust path comes before the cuda path, which
   # may itself contain a different version of thrust
-  return [thrust_inc_path, cuda_inc_path, tbb_inc_path]
+  if 'thrust_path' in env:
+    result = [env['thrust_path']]
+  else:
+    result = []
+  return result + [cuda_inc_path, tbb_inc_path]
   
 
 def lib_paths(env):
@@ -286,6 +289,9 @@ def command_line_variables():
   vars = Variables()
   if os.name == 'nt':
     vars.Add(EnumVariable('MSVC_VERSION', 'MS Visual C++ version', None, allowed_values=('8.0', '9.0', '10.0')))
+
+  # add a variable to specify the Thrust include path
+  vars.Add(PathVariable('thrust_path', 'Thrust #include path', None, PathVariable.PathIsDir))
   
   # add a variable to handle the host backend
   vars.Add(ListVariable('host_backend', 'The host backend to target', 'cpp',

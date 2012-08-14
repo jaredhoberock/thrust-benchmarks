@@ -5,7 +5,7 @@
 #if THRUST_DEVICE_COMPILER == THRUST_DEVICE_COMPILER_NVCC
 
 #include <cuda_runtime_api.h>
-#include <thrust/system/cuda_error.h>
+#include <thrust/system/cuda/error.h>
 #include <thrust/system_error.h>
 #include <string>
 
