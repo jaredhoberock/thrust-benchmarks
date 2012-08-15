@@ -1,11 +1,15 @@
-#include <thrust/detail/config.h>
+#include <thrust/version.h>
 
 // do not attempt to compile this code, which relies on 
 // CUDART, without system support
 #if THRUST_DEVICE_COMPILER == THRUST_DEVICE_COMPILER_NVCC
 
 #include <cuda_runtime_api.h>
+#if THRUST_VERSION < 100600
+#include <thrust/system/cuda_error.h>
+#else
 #include <thrust/system/cuda/error.h>
+#endif
 #include <thrust/system_error.h>
 #include <string>
 
