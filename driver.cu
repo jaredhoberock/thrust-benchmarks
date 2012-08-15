@@ -105,9 +105,17 @@ void benchmark(Test& test, size_t iterations = 20)
 };
 
 
-int main(void)
+int main(int argc, char **argv)
 {
   size_t N = 16 << 20;
+  if(argc > 1)
+  {
+    N = atoi(argv[1]);
+  } else if(argc > 2)
+  {
+    std::cerr << "usage: driver [datasize]" << std::endl;
+    exit(-1);
+  }
 
   typedef thrust::device_vector<int>     Vector;
   typedef testing::random_integers<int>  RandomIntegers;
