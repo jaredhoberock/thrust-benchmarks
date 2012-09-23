@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cassert>
 
-#include "cuda_timer.h"
+#include "device_timer.h"
 #include "random.h"
 #include "demangle.hpp"
 
@@ -90,7 +90,7 @@ void benchmark(Test& test, size_t iterations = 20)
 
   for (size_t i = 0; i < iterations; i++)
   {
-    cuda_timer timer;
+    device_timer timer;
 
     test();
     
