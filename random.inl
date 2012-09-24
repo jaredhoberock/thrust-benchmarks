@@ -105,9 +105,9 @@ struct random_real_iterator
 template <>
 struct random_real_iterator<float>
 {
-    typedef typename random_integer_iterator<unsigned int>::type                RandomIterator;
-    typedef          integer_to_real<unsigned int, float>                       Functor;
-    typedef typename thrust::transform_iterator<Functor, RandomIterator, float> TransformIterator;
+    typedef random_integer_iterator<unsigned int>::type                RandomIterator;
+    typedef integer_to_real<unsigned int, float>                       Functor;
+    typedef thrust::transform_iterator<Functor, RandomIterator, float> TransformIterator;
     
     typedef TransformIterator type;
 
@@ -120,9 +120,9 @@ struct random_real_iterator<float>
 template <>
 struct random_real_iterator<double>
 {
-    typedef typename random_integer_iterator<unsigned long long>::type           RandomIterator;
-    typedef          integer_to_real<unsigned long long, double>                 Functor;
-    typedef typename thrust::transform_iterator<Functor, RandomIterator, double> TransformIterator;
+    typedef random_integer_iterator<unsigned long long>::type           RandomIterator;
+    typedef integer_to_real<unsigned long long, double>                 Functor;
+    typedef thrust::transform_iterator<Functor, RandomIterator, double> TransformIterator;
 
     typedef TransformIterator type;
 
