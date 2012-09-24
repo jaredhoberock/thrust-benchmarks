@@ -119,7 +119,7 @@ int main(int argc, char **argv)
 
   typedef thrust::device_vector<unsigned int>     Vector;
   typedef testing::random_integers<unsigned int>  RandomIntegers;
-  typedef testing::random_integers<bool> RandomBooleans;
+  typedef testing::random_integers<bool>          RandomBooleans;
   
   RandomIntegers A(N, 123);
   RandomIntegers B(N, 234);
@@ -130,7 +130,7 @@ int main(int argc, char **argv)
   Vector         S(N); thrust::sequence(S.begin(), S.end());
   Vector         U(2*N, 0);
 
-  thrust::identity<int> I;
+  thrust::identity<unsigned int> I;
 
   { AdjacentDifference<Vector>     temp(A,B);       benchmark(temp); } // adjacent_difference
   { LowerBound<Vector>             temp(A,B,C);     benchmark(temp); } // binary_search
