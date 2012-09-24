@@ -11,7 +11,7 @@ import itertools
 gnu_compiler_flags = {
   'warn_all'           : ['-Wall'],
   'warnings_as_errors' : ['-Werror'],
-  'release'            : ['-O2'],
+  'release'            : ['-O3'],
   'debug'              : ['-g'],
   'exception_handling' : [],
   'cpp'                : [],
