@@ -186,6 +186,8 @@ def libs(env, CCX, host_backend, device_backend):
 
   if host_backend == 'tbb' or device_backend == 'tbb':
     result.append(tbb_installation(env)[3])
+    if os.name == 'posix' and platform.system() != 'Darwin':
+      result.append('rt') # for clock_gettime needed by tbb
 
   return result
 
@@ -272,8 +274,9 @@ def nv_compiler_flags(mode, device_backend, arch):
   result = []
   for machine_arch in arch:
     # transform arch_XX to compute_XX
-    virtual_arch = machine_arch.replace('sm','compute')
-    result.append('-gencode="arch={0},code={1}"'.format(virtual_arch, virtual_arch))
+    #virtual_arch = machine_arch.replace('sm','compute')
+    #result.append('-gencode="arch={0},code={1}"'.format(virtual_arch, virtual_arch))
+    result.append('-arch={0}'.format(machine_arch))
   if mode == 'debug':
     # turn on debug mode
     # XXX make this work when we've debugged nvcc -G
