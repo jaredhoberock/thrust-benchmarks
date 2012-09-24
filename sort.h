@@ -24,6 +24,29 @@ struct Sort
   }
 };
 
+template <typename T>
+struct MyCompare
+  : private thrust::less<T>
+{
+  inline __host__ __device__
+  bool operator()(const T& x, const T &y) const
+  {
+    return thrust::less<T>::operator()(x,y);
+  }
+};
+
+template <typename Container>
+struct ComparisonSort
+  : Sort<Container, MyCompare<typename Container::value_type> >
+{
+  typedef Sort<Container, MyCompare<typename Container::value_type> > super_t;
+
+  template <typename Range>
+  ComparisonSort(const Range& X)
+    : super_t(X)
+  {}
+};
+
 template <typename Container,
           typename StrictWeakOrdering = thrust::less<typename Container::value_type> >
 struct StableSort

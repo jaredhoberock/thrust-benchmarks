@@ -117,8 +117,8 @@ int main(int argc, char **argv)
     exit(-1);
   }
 
-  typedef thrust::device_vector<int>     Vector;
-  typedef testing::random_integers<int>  RandomIntegers;
+  typedef thrust::device_vector<unsigned int>     Vector;
+  typedef testing::random_integers<unsigned int>  RandomIntegers;
   typedef testing::random_integers<bool> RandomBooleans;
   
   RandomIntegers A(N, 123);
@@ -131,7 +131,6 @@ int main(int argc, char **argv)
   Vector         U(2*N, 0);
 
   thrust::identity<int> I;
-
 
   { AdjacentDifference<Vector>     temp(A,B);       benchmark(temp); } // adjacent_difference
   { LowerBound<Vector>             temp(A,B,C);     benchmark(temp); } // binary_search
@@ -195,6 +194,7 @@ int main(int argc, char **argv)
   { SortByKey<Vector>              temp(A,B);       benchmark(temp); }
   { StableSort<Vector>             temp(A);         benchmark(temp); }
   { StableSortByKey<Vector>        temp(A,B);       benchmark(temp); }
+  { ComparisonSort<Vector>         temp(A);         benchmark(temp); }
   { IsSorted<Vector>               temp(S);         benchmark(temp); }
   { IsSortedUntil<Vector>          temp(S);         benchmark(temp); }
   { SwapRanges<Vector>             temp(A,B);       benchmark(temp); } // swap
