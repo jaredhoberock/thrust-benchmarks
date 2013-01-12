@@ -42,7 +42,7 @@ struct cuda_timer
     cuda_safe_call(cudaEventRecord(start, 0));
   }
 
-  double elapsed(void)
+  double elapsed_seconds(void)
   {
     cuda_safe_call(cudaEventRecord(end, 0));
     cuda_safe_call(cudaEventSynchronize(end));
@@ -50,11 +50,6 @@ struct cuda_timer
     float ms_elapsed;
     cuda_safe_call(cudaEventElapsedTime(&ms_elapsed, start, end));
     return ms_elapsed / 1e3;
-  }
-
-  double epsilon(void)
-  {
-    return 0.5e-6;
   }
 };
 

@@ -16,10 +16,9 @@ struct tbb_timer
     start = tbb::tick_count::now();
   }
 
-  double elapsed()
+  double elapsed_seconds()
   {
-    // return msecs
-    return (tbb::tick_count::now() - start).seconds() / 1000;
+    return (tbb::tick_count::now() - start).seconds();
   }
 };
 

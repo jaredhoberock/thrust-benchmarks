@@ -15,15 +15,9 @@ struct clock_timer
     start = std::clock();
   }
 
-  double elapsed()
+  double elapsed_seconds()
   {
-    return (std::clock() - start) * epsilon();
-  }
-
-  double epsilon()
-  {
-    // return msecs
-    return (1.0 / CLOCKS_PER_SEC) / 1000;
+    return double(std::clock() - start) / CLOCKS_PER_SEC;
   }
 };
 
