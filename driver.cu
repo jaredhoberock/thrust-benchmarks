@@ -38,13 +38,16 @@
 #include "set_operations_by_key.h"
 #include "sort.h"
 #include "swap.h"
-#include "tabulate.h"
 #include "transform.h"
 #include "transform_reduce.h"
 #include "transform_scan.h"
 #include "uninitialized_copy.h"
 #include "uninitialized_fill.h"
 #include "unique.h"
+
+#if THRUST_VERSION >= 100700
+#include "tabulate.h"
+#endif
 
 template<typename T>
 std::string name_of_type()
