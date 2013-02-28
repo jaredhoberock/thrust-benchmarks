@@ -123,9 +123,6 @@ int main(int argc, char **argv)
     exit(-1);
   }
 
-  std::cout << "Thrust version, " << THRUST_VERSION << ", " << std::endl;
-  std::cout << "datasize, " << N << ", " << std::endl;
-
   typedef thrust::device_vector<unsigned int>     Vector;
   typedef testing::random_integers<unsigned int>  RandomIntegers;
   typedef testing::random_integers<bool>          RandomBooleans;
