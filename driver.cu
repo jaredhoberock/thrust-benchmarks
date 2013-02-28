@@ -35,6 +35,7 @@
 #include "scatter.h"
 #include "sequence.h"
 #include "set_operations.h"
+#include "set_operations_by_key.h"
 #include "sort.h"
 #include "swap.h"
 #include "tabulate.h"
@@ -137,88 +138,95 @@ int main(int argc, char **argv)
 
   thrust::identity<unsigned int> I;
 
-  { AdjacentDifference<Vector>     temp(A,B);           benchmark(temp); } // adjacent_difference
-  { LowerBound<Vector>             temp(A,B,C);         benchmark(temp); } // binary_search
-  { UpperBound<Vector>             temp(A,B,C);         benchmark(temp); }
-  { BinarySearch<Vector>           temp(A,B,C);         benchmark(temp); }
-  { Copy<Vector>                   temp(A,B);           benchmark(temp); } // copy
-  { CopyN<Vector>                  temp(A,B);           benchmark(temp); }
-  { CopyIf<Vector>                 temp(A,D,B);         benchmark(temp); }
-  { Count<Vector>                  temp(D);             benchmark(temp); } // count
-  { CountIf<Vector>                temp(D);             benchmark(temp); }
-  { Equal<Vector>                  temp(A,A);           benchmark(temp); } // equal
-  { MinElement<Vector>             temp(A);             benchmark(temp); } // extrema
-  { MaxElement<Vector>             temp(A);             benchmark(temp); }
-  { MinMaxElement<Vector>          temp(A);             benchmark(temp); }
-  { Fill<Vector>                   temp(A);             benchmark(temp); } // fill
-  { FillN<Vector>                  temp(A);             benchmark(temp); }
-  { Find<Vector>                   temp(F,1);           benchmark(temp); } // find
-  { FindIf<Vector>                 temp(F);             benchmark(temp); }
-  { FindIfNot<Vector>              temp(T);             benchmark(temp); }
-  { ForEach<Vector>                temp(A);             benchmark(temp); } // for_each
-  { Gather<Vector>                 temp(S,A,B);         benchmark(temp); } // gather
-  { GatherIf<Vector>               temp(S,D,A,B);       benchmark(temp); }
-  { Generate<Vector>               temp(A);             benchmark(temp); } // generate
-  { GenerateN<Vector>              temp(A);             benchmark(temp); }
-  { InnerProduct<Vector>           temp(A,B);           benchmark(temp); } // inner_product
-  { AllOf<Vector>                  temp(T);             benchmark(temp); } // logical
-  { AnyOf<Vector>                  temp(F);             benchmark(temp); }
-  { NoneOf<Vector>                 temp(F);             benchmark(temp); }
-  { Merge<Vector>                  temp(A,B,U1);        benchmark(temp); } // merge
-  { MergeByKey<Vector>             temp(A,B,C,D,U1,U2); benchmark(temp); } // merge_by_key
-  { Mismatch<Vector>               temp(A,A);           benchmark(temp); } // mismatch
-  { Partition<Vector>              temp(A);             benchmark(temp); } // partition
-  { PartitionCopy<Vector>          temp(D,A,B);         benchmark(temp); }
-  { StablePartition<Vector>        temp(A);             benchmark(temp); }
-  { StablePartitionCopy<Vector>    temp(D,A,B);         benchmark(temp); }
-  { IsPartitioned<Vector>          temp(T);             benchmark(temp); }
-  { PartitionPoint<Vector>         temp(T);             benchmark(temp); }
-  { Reduce<Vector>                 temp(A);             benchmark(temp); } // reduce
-  { ReduceByKey<Vector>            temp(D,A,B,C);       benchmark(temp); }
-  { Remove<Vector>                 temp(D,0);           benchmark(temp); } // remove
-  { RemoveCopy<Vector>             temp(D,A,0);         benchmark(temp); }
-  { RemoveIf<Vector>               temp(A,D);           benchmark(temp); }
-  { RemoveCopyIf<Vector>           temp(A,D,B);         benchmark(temp); }
-  { Replace<Vector>                temp(D,0,2);         benchmark(temp); } // replace
-  { ReplaceCopy<Vector>            temp(D,A,0,2);       benchmark(temp); }
-  { ReplaceIf<Vector>              temp(A,D,I,0);       benchmark(temp); }
-  { ReplaceCopyIf<Vector>          temp(A,D,B,I,0);     benchmark(temp); }
-  { Reverse<Vector>                temp(A);             benchmark(temp); }
-  { ReverseCopy<Vector>            temp(A,B);           benchmark(temp); }
-  { InclusiveScan<Vector>          temp(A,B);           benchmark(temp); }
-  { ExclusiveScan<Vector>          temp(A,B);           benchmark(temp); }
-  { InclusiveScanByKey<Vector>     temp(D,A,B);         benchmark(temp); }
-  { ExclusiveScanByKey<Vector>     temp(D,A,B);         benchmark(temp); }
-  { Scatter<Vector>                temp(A,S,B);         benchmark(temp); } // scatter
-  { ScatterIf<Vector>              temp(A,S,D,B);       benchmark(temp); }
-  { Sequence<Vector>               temp(A);             benchmark(temp); } // sequence
-  { SetDifference<Vector>          temp(A,B,U1);        benchmark(temp); } // set_operations
-  { SetIntersection<Vector>        temp(A,B,U1);        benchmark(temp); }
-  { SetSymmetricDifference<Vector> temp(A,B,U1);        benchmark(temp); }
-  { SetUnion<Vector>               temp(A,B,U1);        benchmark(temp); }
-  { Sort<Vector>                   temp(A);             benchmark(temp); } // sort
-  { SortByKey<Vector>              temp(A,B);           benchmark(temp); }
-  { StableSort<Vector>             temp(A);             benchmark(temp); }
-  { StableSortByKey<Vector>        temp(A,B);           benchmark(temp); }
-  { ComparisonSort<Vector>         temp(A);             benchmark(temp); }
-  { IsSorted<Vector>               temp(S);             benchmark(temp); }
-  { IsSortedUntil<Vector>          temp(S);             benchmark(temp); }
-  { SwapRanges<Vector>             temp(A,B);           benchmark(temp); } // swap
-  { Tabulate<Vector>               temp(A);             benchmark(temp); } // tabulate
-  { UnaryTransform<Vector>         temp(A,B);           benchmark(temp); } // transform
-  { BinaryTransform<Vector>        temp(A,B,C);         benchmark(temp); }
-  { UnaryTransformIf<Vector>       temp(A,D,B);         benchmark(temp); }
-  { BinaryTransformIf<Vector>      temp(A,B,D,C);       benchmark(temp); }
-  { TransformReduce<Vector>        temp(A);             benchmark(temp); } // transform_reduce
-  { TransformInclusiveScan<Vector> temp(A,B);           benchmark(temp); } // transform_scan
-  { TransformExclusiveScan<Vector> temp(A,B);           benchmark(temp); }
-  { UninitializedCopy<Vector>      temp(A,B);           benchmark(temp); } // uninitialized_copy
-  { UninitializedFill<Vector>      temp(A);             benchmark(temp); } // fill
-  { UninitializedFillN<Vector>     temp(A);             benchmark(temp); }
-  { Unique<Vector>                 temp(D);             benchmark(temp); } // unique
-  { UniqueCopy<Vector>             temp(D,A);           benchmark(temp); }
-  { UniqueByKey<Vector>            temp(D,A);           benchmark(temp); }
-  { UniqueByKeyCopy<Vector>        temp(D,A,B,C);       benchmark(temp); }
+  { AdjacentDifference<Vector>          temp(A,B);           benchmark(temp); } // adjacent_difference
+  { LowerBound<Vector>                  temp(A,B,C);         benchmark(temp); } // binary_search
+  { UpperBound<Vector>                  temp(A,B,C);         benchmark(temp); }
+  { BinarySearch<Vector>                temp(A,B,C);         benchmark(temp); }
+  { Copy<Vector>                        temp(A,B);           benchmark(temp); } // copy
+  { CopyN<Vector>                       temp(A,B);           benchmark(temp); }
+  { CopyIf<Vector>                      temp(A,D,B);         benchmark(temp); }
+  { Count<Vector>                       temp(D);             benchmark(temp); } // count
+  { CountIf<Vector>                     temp(D);             benchmark(temp); }
+  { Equal<Vector>                       temp(A,A);           benchmark(temp); } // equal
+  { MinElement<Vector>                  temp(A);             benchmark(temp); } // extrema
+  { MaxElement<Vector>                  temp(A);             benchmark(temp); }
+  { MinMaxElement<Vector>               temp(A);             benchmark(temp); }
+  { Fill<Vector>                        temp(A);             benchmark(temp); } // fill
+  { FillN<Vector>                       temp(A);             benchmark(temp); }
+  { Find<Vector>                        temp(F,1);           benchmark(temp); } // find
+  { FindIf<Vector>                      temp(F);             benchmark(temp); }
+  { FindIfNot<Vector>                   temp(T);             benchmark(temp); }
+  { ForEach<Vector>                     temp(A);             benchmark(temp); } // for_each
+  { Gather<Vector>                      temp(S,A,B);         benchmark(temp); } // gather
+  { GatherIf<Vector>                    temp(S,D,A,B);       benchmark(temp); }
+  { Generate<Vector>                    temp(A);             benchmark(temp); } // generate
+  { GenerateN<Vector>                   temp(A);             benchmark(temp); }
+  { InnerProduct<Vector>                temp(A,B);           benchmark(temp); } // inner_product
+  { AllOf<Vector>                       temp(T);             benchmark(temp); } // logical
+  { AnyOf<Vector>                       temp(F);             benchmark(temp); }
+  { NoneOf<Vector>                      temp(F);             benchmark(temp); }
+  { Merge<Vector>                       temp(A,B,U1);        benchmark(temp); } // merge
+  { Mismatch<Vector>                    temp(A,A);           benchmark(temp); } // mismatch
+  { Partition<Vector>                   temp(A);             benchmark(temp); } // partition
+  { PartitionCopy<Vector>               temp(D,A,B);         benchmark(temp); }
+  { StablePartition<Vector>             temp(A);             benchmark(temp); }
+  { StablePartitionCopy<Vector>         temp(D,A,B);         benchmark(temp); }
+  { IsPartitioned<Vector>               temp(T);             benchmark(temp); }
+  { PartitionPoint<Vector>              temp(T);             benchmark(temp); }
+  { Reduce<Vector>                      temp(A);             benchmark(temp); } // reduce
+  { ReduceByKey<Vector>                 temp(D,A,B,C);       benchmark(temp); }
+  { Remove<Vector>                      temp(D,0);           benchmark(temp); } // remove
+  { RemoveCopy<Vector>                  temp(D,A,0);         benchmark(temp); }
+  { RemoveIf<Vector>                    temp(A,D);           benchmark(temp); }
+  { RemoveCopyIf<Vector>                temp(A,D,B);         benchmark(temp); }
+  { Replace<Vector>                     temp(D,0,2);         benchmark(temp); } // replace
+  { ReplaceCopy<Vector>                 temp(D,A,0,2);       benchmark(temp); }
+  { ReplaceIf<Vector>                   temp(A,D,I,0);       benchmark(temp); }
+  { ReplaceCopyIf<Vector>               temp(A,D,B,I,0);     benchmark(temp); }
+  { Reverse<Vector>                     temp(A);             benchmark(temp); }
+  { ReverseCopy<Vector>                 temp(A,B);           benchmark(temp); }
+  { InclusiveScan<Vector>               temp(A,B);           benchmark(temp); }
+  { ExclusiveScan<Vector>               temp(A,B);           benchmark(temp); }
+  { InclusiveScanByKey<Vector>          temp(D,A,B);         benchmark(temp); }
+  { ExclusiveScanByKey<Vector>          temp(D,A,B);         benchmark(temp); }
+  { Scatter<Vector>                     temp(A,S,B);         benchmark(temp); } // scatter
+  { ScatterIf<Vector>                   temp(A,S,D,B);       benchmark(temp); }
+  { Sequence<Vector>                    temp(A);             benchmark(temp); } // sequence
+  { SetDifference<Vector>               temp(A,B,U1);        benchmark(temp); } // set_operations
+  { SetIntersection<Vector>             temp(A,B,U1);        benchmark(temp); }
+  { SetSymmetricDifference<Vector>      temp(A,B,U1);        benchmark(temp); }
+  { SetUnion<Vector>                    temp(A,B,U1);        benchmark(temp); }
+  { Sort<Vector>                        temp(A);             benchmark(temp); } // sort
+  { SortByKey<Vector>                   temp(A,B);           benchmark(temp); }
+  { StableSort<Vector>                  temp(A);             benchmark(temp); }
+  { StableSortByKey<Vector>             temp(A,B);           benchmark(temp); }
+  { ComparisonSort<Vector>              temp(A);             benchmark(temp); }
+  { IsSorted<Vector>                    temp(S);             benchmark(temp); }
+  { IsSortedUntil<Vector>               temp(S);             benchmark(temp); }
+  { SwapRanges<Vector>                  temp(A,B);           benchmark(temp); } // swap
+  { UnaryTransform<Vector>              temp(A,B);           benchmark(temp); } // transform
+  { BinaryTransform<Vector>             temp(A,B,C);         benchmark(temp); }
+  { UnaryTransformIf<Vector>            temp(A,D,B);         benchmark(temp); }
+  { BinaryTransformIf<Vector>           temp(A,B,D,C);       benchmark(temp); }
+  { TransformReduce<Vector>             temp(A);             benchmark(temp); } // transform_reduce
+  { TransformInclusiveScan<Vector>      temp(A,B);           benchmark(temp); } // transform_scan
+  { TransformExclusiveScan<Vector>      temp(A,B);           benchmark(temp); }
+  { UninitializedCopy<Vector>           temp(A,B);           benchmark(temp); } // uninitialized_copy
+  { UninitializedFill<Vector>           temp(A);             benchmark(temp); } // fill
+  { UninitializedFillN<Vector>          temp(A);             benchmark(temp); }
+  { Unique<Vector>                      temp(D);             benchmark(temp); } // unique
+  { UniqueCopy<Vector>                  temp(D,A);           benchmark(temp); }
+  { UniqueByKey<Vector>                 temp(D,A);           benchmark(temp); }
+  { UniqueByKeyCopy<Vector>             temp(D,A,B,C);       benchmark(temp); }
+
+#if THRUST_VERSION > 100700
+  { MergeByKey<Vector>                  temp(A,B,C,D,U1,U2); benchmark(temp); } // merge_by_key
+  { SetDifferenceByKey<Vector>          temp(A,B,C,D,U1,U2); benchmark(temp); } // set_operations by_key
+  { SetIntersectionByKey<Vector>        temp(A,B,C,U1,U2);   benchmark(temp); }
+  { SetSymmetricDifferenceByKey<Vector> temp(A,B,C,D,U1,U2); benchmark(temp); }
+  { SetUnionByKey<Vector>               temp(A,B,C,D,U1,U2); benchmark(temp); }
+  { Tabulate<Vector>                    temp(A);             benchmark(temp); } // tabulate
+#endif
 
   // host<->device copy
 
