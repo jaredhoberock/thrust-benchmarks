@@ -1,6 +1,8 @@
 #include <thrust/set_operations.h>
-
 #include <thrust/sort.h>
+#include <thrust/version.h>
+
+#if THRUST_VERSION > 100700
 
 template <typename Container1,
           typename Container2 = Container1,
@@ -198,4 +200,6 @@ struct SetSymmetricDifferenceByKey
     // nothing to do
   }
 };
+
+#endif // THRUST_VERSION
 

@@ -1,6 +1,7 @@
 #include <thrust/merge.h>
 
 #include <thrust/sort.h>
+#include <thrust/version.h>
 
 template <typename Container1,
           typename Container2 = Container1,
@@ -34,6 +35,8 @@ struct Merge
     // nothing to do
   }
 };
+
+#if THRUST_VERSION >= 100700
 
 template <typename Container1,
           typename Container2 = Container1,
@@ -84,4 +87,6 @@ struct MergeByKey
     // nothing to do
   }
 };
+
+#endif // THRUST_VERSION
 
