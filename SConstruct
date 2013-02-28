@@ -274,9 +274,10 @@ def nv_compiler_flags(mode, device_backend, arch):
   result = []
   for machine_arch in arch:
     # transform arch_XX to compute_XX
-    #virtual_arch = machine_arch.replace('sm','compute')
-    #result.append('-gencode="arch={0},code={1}"'.format(virtual_arch, virtual_arch))
-    result.append('-arch={0}'.format(machine_arch))
+    virtual_arch = machine_arch.replace('sm','compute')
+    # the weird -gencode flag is formatted like this:
+    # -gencode=arch=compute_10,code=\"sm_10,compute_10\"
+    result.append('-gencode=arch={0},\\"code={1},{2}\\"'.format(virtual_arch, machine_arch, virtual_arch))
   if mode == 'debug':
     # turn on debug mode
     # XXX make this work when we've debugged nvcc -G
@@ -310,7 +311,7 @@ def command_line_variables():
   
   # add a variable to handle compute capability
   vars.Add(ListVariable('arch', 'Compute capability code generation', 'sm_10',
-                        ['sm_10', 'sm_11', 'sm_12', 'sm_13', 'sm_20', 'sm_21']))
+                        ['sm_10', 'sm_11', 'sm_12', 'sm_13', 'sm_20', 'sm_21', 'sm_30', 'sm_35']))
   
   # add a variable to handle warnings
   # only enable Wall by default on compilers other than cl
