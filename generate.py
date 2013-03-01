@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 from subprocess import check_call
 import collate
 
@@ -6,8 +7,8 @@ import collate
 def generate(datasizes):
   filenames = []
   for size in datasizes:
-    print "Testing", size, "..."
-    filename = "test_" + str(size) + ".txt"
+    sys.stderr.write("Testing " + str(size) + "...\n")
+    filename = str(size) + ".txt"
     filenames.append(filename)
     f = open(filename, 'w')
     check_call(["./targets/cpp_host_cuda_device_release/driver", str(size)], stdout = f)
