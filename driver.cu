@@ -202,6 +202,7 @@ int main(int argc, char **argv)
   { StableSort<Vector>                  temp(A);             benchmark(temp); }
   { StableSortByKey<Vector>             temp(A,B);           benchmark(temp); }
   { ComparisonSort<Vector>              temp(A);             benchmark(temp); }
+  { ComparisonSortByKey<Vector>         temp(A,B);           benchmark(temp); }
   { IsSorted<Vector>                    temp(S);             benchmark(temp); }
   { IsSortedUntil<Vector>               temp(S);             benchmark(temp); }
   { SwapRanges<Vector>                  temp(A,B);           benchmark(temp); } // swap

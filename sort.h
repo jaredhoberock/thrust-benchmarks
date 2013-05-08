@@ -99,6 +99,20 @@ struct SortByKey
   }
 };
 
+
+template <typename Container1,
+          typename Container2 = Container1>
+struct ComparisonSortByKey
+  : SortByKey<Container1, Container2, MyCompare<typename Container1::value_type> >
+{
+  typedef SortByKey<Container1, Container2, MyCompare<typename Container1::value_type> > super_t;
+
+  template <typename Range1, typename Range2>
+  ComparisonSortByKey(const Range1& X, const Range2& Y)
+    : super_t(X,Y)
+  {}
+};
+
 template <typename Container1,
           typename Container2 = Container1,
           typename StrictWeakOrdering = thrust::less<typename Container1::value_type> >
