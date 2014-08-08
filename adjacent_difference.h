@@ -20,10 +20,5 @@ struct AdjacentDifference
   {
     thrust::adjacent_difference(A.begin(), A.end(), B.begin(), binary_op);
   }
-
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 

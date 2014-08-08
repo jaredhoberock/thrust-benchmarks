@@ -17,11 +17,6 @@ struct Count
   {
     thrust::count(A.begin(), A.end(), value);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container,
@@ -40,11 +35,6 @@ struct CountIf
   void operator()(void)
   {
     thrust::count_if(A.begin(), A.end(), pred);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

@@ -51,11 +51,6 @@ struct PartitionCopy
   {
     thrust::partition_copy(A.begin(), A.end(), B.begin(), C.begin(), pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 
@@ -110,11 +105,6 @@ struct StablePartitionCopy
   {
     thrust::stable_partition_copy(A.begin(), A.end(), B.begin(), C.begin(), pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 
@@ -135,11 +125,6 @@ struct IsPartitioned
   {
     thrust::is_partitioned(A.begin(), A.end(), pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 
@@ -159,11 +144,6 @@ struct PartitionPoint
   void operator()(void)
   {
     thrust::partition_point(A.begin(), A.end(), pred);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

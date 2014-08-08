@@ -26,10 +26,5 @@ struct InnerProduct
   {
     thrust::inner_product(A.begin(), A.end(), B.begin(), value, binary_op1, binary_op2);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 

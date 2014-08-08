@@ -55,20 +55,9 @@ std::string name_of_type()
   return std::string(demangle(typeid(T).name()));
 }
 
-template <typename Vector>
-void filter(Vector& times)
-{
-  // XXX the filter could drop outliers, select the median, etc.
 
-  typedef typename Vector::value_type T;
-
-  T average_time = thrust::reduce(times.begin(), times.end()) / (T) times.size();
-  times.resize(1);
-  times[0] = average_time;
-}
-
-template <typename Test, typename Vector>
-void report(Test& test, Vector& times)
+template <typename Test>
+void report(const Test& test, double time)
 {
   std::string test_name = name_of_type<Test>();
 
@@ -77,15 +66,17 @@ void report(Test& test, Vector& times)
     test_name.resize(test_name.find("<"));
   }
 
-  std::cout << test_name << ", ";
-  for (size_t i = 0; i < times.size(); i++)
-    std::cout << times[i] << ", ";
-  std::cout << "\n";
+  std::cout << test_name << ", " << time << ", " << std::endl;
 }
+
+__THRUST_DEFINE_HAS_MEMBER_FUNCTION(has_reset, reset);
 
 
 template <typename Test>
-void benchmark(Test& test, size_t iterations = 20)
+typename thrust::detail::enable_if<
+  has_reset<Test, void(void)>::value
+>::type
+  benchmark(Test& test, size_t iterations = 20)
 {
   // run one iteration (warm up)
   test();
@@ -93,6 +84,9 @@ void benchmark(Test& test, size_t iterations = 20)
   test.reset();
   
   thrust::host_vector<double> times(iterations);
+
+  // the test has a reset function so we have to
+  // be careful not to include the time it takes
 
   for (size_t i = 0; i < iterations; i++)
   {
@@ -105,9 +99,34 @@ void benchmark(Test& test, size_t iterations = 20)
     test.reset();
   }
 
-  filter(times);
+  double mean = thrust::reduce(times.begin(), times.end()) / times.size();
 
-  report(test, times);
+  report(test, mean);
+};
+
+
+template <typename Test>
+typename thrust::detail::disable_if<
+  has_reset<Test, void(void)>::value
+>::type
+  benchmark(Test& test, size_t iterations = 20)
+{
+  // run one iteration (warm up)
+  test();
+
+  // the test doesn't have a reset function so we can
+  // just take the average time
+
+  device_timer timer;
+
+  for (size_t i = 0; i < iterations; i++)
+  {
+    test();
+  }
+    
+  double time = timer.elapsed_seconds()/ iterations;
+
+  report(test, time);
 };
 
 

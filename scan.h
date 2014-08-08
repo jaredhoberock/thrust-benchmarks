@@ -21,11 +21,6 @@ struct InclusiveScan
   {
     thrust::inclusive_scan(A.begin(), A.end(), B.begin(), binary_op);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -52,11 +47,6 @@ struct ExclusiveScan
   void operator()(void)
   {
     thrust::exclusive_scan(A.begin(), A.end(), B.begin(), init, binary_op);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 
@@ -87,11 +77,6 @@ struct InclusiveScanByKey
   void operator()(void)
   {
     thrust::inclusive_scan_by_key(A.begin(), A.end(), B.begin(), C.begin(), binary_pred, binary_op);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 
@@ -126,11 +111,6 @@ struct ExclusiveScanByKey
   void operator()(void)
   {
     thrust::exclusive_scan_by_key(A.begin(), A.end(), B.begin(), C.begin(), init, binary_pred, binary_op);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

@@ -47,11 +47,6 @@ struct SetDifferenceByKey
                                   out_values.begin(),
                                   comp);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -93,11 +88,6 @@ struct SetIntersectionByKey
                                     out_keys.begin(),
                                     out_values.begin(),
                                     comp);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 
@@ -144,11 +134,6 @@ struct SetUnionByKey
                              out_values.begin(),
                              comp);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -193,11 +178,6 @@ struct SetSymmetricDifferenceByKey
                                             out_keys.begin(),
                                             out_values.begin(),
                                             comp);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

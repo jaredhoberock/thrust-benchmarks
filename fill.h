@@ -17,11 +17,6 @@ struct Fill
   {
     thrust::fill(A.begin(), A.end(), value);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container,
@@ -40,11 +35,6 @@ struct FillN
   void operator()(void)
   {
     thrust::fill_n(A.begin(), A.size(), value);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

@@ -17,11 +17,6 @@ struct UninitializedFill
   {
     thrust::uninitialized_fill(A.begin(), A.end(), value);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container,
@@ -40,11 +35,6 @@ struct UninitializedFillN
   void operator()(void)
   {
     thrust::uninitialized_fill_n(A.begin(), A.size(), value);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

@@ -19,11 +19,6 @@ struct Tabulate
   {
     thrust::tabulate(A.begin(), A.end(), unary_op);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 

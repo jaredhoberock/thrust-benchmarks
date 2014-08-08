@@ -44,11 +44,6 @@ struct UniqueCopy
   {
     thrust::unique_copy(A.begin(), A.end(), B.begin(), pred);
   }
-
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -104,11 +99,6 @@ struct UniqueByKeyCopy
   void operator()(void)
   {
     thrust::unique_by_key_copy(A.begin(), A.end(), B.begin(), C.begin(), D.begin(), pred);
-  }
-
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

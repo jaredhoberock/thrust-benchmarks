@@ -23,11 +23,6 @@ struct TransformReduce
   {
     thrust::transform_reduce(A.begin(), A.end(), unary_op, init, binary_op);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 

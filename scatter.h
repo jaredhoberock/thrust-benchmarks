@@ -20,11 +20,6 @@ struct Scatter
   {
     thrust::scatter(A.begin(), A.end(), B.begin(), C.begin());
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -52,11 +47,6 @@ struct ScatterIf
   void operator()(void)
   {
     thrust::scatter_if(A.begin(), A.end(), B.begin(), C.begin(), D.begin(), pred);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

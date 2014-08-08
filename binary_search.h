@@ -27,11 +27,6 @@ struct LowerBound
   {
     thrust::lower_bound(A.begin(), A.end(), B.begin(), B.end(), C.begin(), comp);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -60,11 +55,6 @@ struct UpperBound
   {
     thrust::upper_bound(A.begin(), A.end(), B.begin(), B.end(), C.begin(), comp);
   }
-
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -92,11 +82,6 @@ struct BinarySearch
   void operator()(void)
   {
     thrust::binary_search(A.begin(), A.end(), B.begin(), B.end(), C.begin(), comp);
-  }
-
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

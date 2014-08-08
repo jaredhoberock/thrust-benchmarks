@@ -17,11 +17,6 @@ struct MinElement
   {
     thrust::min_element(A.begin(), A.end(), binary_pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 
@@ -42,11 +37,6 @@ struct MaxElement
   {
     thrust::max_element(A.begin(), A.end(), binary_pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 
@@ -66,11 +56,6 @@ struct MinMaxElement
   void operator()(void)
   {
     thrust::minmax_element(A.begin(), A.end(), binary_pred);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

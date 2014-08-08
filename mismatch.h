@@ -20,11 +20,6 @@ struct Mismatch
   {
     thrust::mismatch(A.begin(), A.end(), B.begin(), binary_pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 

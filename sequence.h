@@ -14,10 +14,5 @@ struct Sequence
   {
     thrust::sequence(A.begin(), A.end());
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 

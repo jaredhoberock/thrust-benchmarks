@@ -28,11 +28,6 @@ struct SetDifference
   {
     thrust::set_difference(A.begin(), A.end(), B.begin(), B.end(), C.begin(), comp);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -60,11 +55,6 @@ struct SetIntersection
   void operator()(void)
   {
     thrust::set_intersection(A.begin(), A.end(), B.begin(), B.end(), C.begin(), comp);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 
@@ -94,11 +84,6 @@ struct SetSymmetricDifference
   {
     thrust::set_symmetric_difference(A.begin(), A.end(), B.begin(), B.end(), C.begin(), comp);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -126,11 +111,6 @@ struct SetUnion
   void operator()(void)
   {
     thrust::set_union(A.begin(), A.end(), B.begin(), B.end(), C.begin(), comp);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

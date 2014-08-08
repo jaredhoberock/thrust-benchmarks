@@ -29,11 +29,6 @@ struct Merge
   {
     thrust::merge(A.begin(), A.end(), B.begin(), B.end(), C.begin(), comp);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 #if THRUST_VERSION >= 100700
@@ -80,11 +75,6 @@ struct MergeByKey
                          out_keys.begin(),
                          out_values.begin(),
                          comp);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

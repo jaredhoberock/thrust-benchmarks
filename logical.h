@@ -17,11 +17,6 @@ struct AllOf
   {
     thrust::all_of(A.begin(), A.end(), pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container,
@@ -41,11 +36,6 @@ struct AnyOf
   {
     thrust::any_of(A.begin(), A.end(), pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container,
@@ -64,11 +54,6 @@ struct NoneOf
   void operator()(void)
   {
     thrust::none_of(A.begin(), A.end(), pred);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

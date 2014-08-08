@@ -159,11 +159,6 @@ struct IsSorted
   {
     thrust::is_sorted(A.begin(), A.end(), comp);
   }
-
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container,
@@ -182,11 +177,6 @@ struct IsSortedUntil
   void operator()(void)
   {
     thrust::is_sorted_until(A.begin(), A.end(), comp);
-  }
-
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

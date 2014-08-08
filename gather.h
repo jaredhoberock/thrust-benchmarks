@@ -20,11 +20,6 @@ struct Gather
   {
     thrust::gather(A.begin(), A.end(), B.begin(), C.begin());
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -52,11 +47,6 @@ struct GatherIf
   void operator()(void)
   {
     thrust::gather_if(A.begin(), A.end(), B.begin(), C.begin(), D.begin(), pred);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

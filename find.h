@@ -17,11 +17,6 @@ struct Find
   {
     thrust::find(A.begin(), A.end(), value);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container,
@@ -41,11 +36,6 @@ struct FindIf
   {
     thrust::find_if(A.begin(), A.end(), pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container,
@@ -64,11 +54,6 @@ struct FindIfNot
   void operator()(void)
   {
     thrust::find_if_not(A.begin(), A.end(), pred);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

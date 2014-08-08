@@ -75,11 +75,6 @@ struct ReplaceCopy
   {
     thrust::replace_copy(A.begin(), A.end(), B.begin(), old_value, new_value);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -106,11 +101,6 @@ struct ReplaceCopyIf
   void operator()(void)
   {
     thrust::replace_copy_if(A.begin(), A.end(), B.begin(), C.begin(), pred, new_value);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

@@ -21,11 +21,6 @@ struct UnaryTransform
   {
     thrust::transform(A.begin(), A.end(), B.begin(), unary_op);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -56,11 +51,6 @@ struct UnaryTransformIf
   {
     thrust::transform_if(A.begin(), A.end(), B.begin(), C.begin(), unary_op, pred);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 
@@ -87,11 +77,6 @@ struct BinaryTransform
   void operator()(void)
   {
     thrust::transform(A.begin(), A.end(), B.begin(), C.begin(), binary_op);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 
@@ -126,11 +111,6 @@ struct BinaryTransformIf
   void operator()(void)
   {
     thrust::transform_if(A.begin(), A.end(), B.begin(), C.begin(), D.begin(), binary_op, pred);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

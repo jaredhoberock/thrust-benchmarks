@@ -27,10 +27,5 @@ struct ForEach
   {
     thrust::for_each(A.begin(), A.end(), unary_op);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 

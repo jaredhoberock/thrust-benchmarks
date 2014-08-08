@@ -27,11 +27,6 @@ struct Generate
   {
     thrust::generate(A.begin(), A.end(), unary_op);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container,
@@ -50,11 +45,6 @@ struct GenerateN
   void operator()(void)
   {
     thrust::generate_n(A.begin(), A.size(), unary_op);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

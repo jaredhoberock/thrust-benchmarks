@@ -16,11 +16,6 @@ struct Copy
   {
     thrust::copy(A.begin(), A.end(), B.begin());
   }
-
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -38,11 +33,6 @@ struct CopyN
   void operator()(void)
   {
     thrust::copy_n(A.begin(), A.size(), B.begin());
-  }
-
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 
@@ -68,11 +58,6 @@ struct CopyIf
   void operator()(void)
   {
     thrust::copy_if(A.begin(), A.end(), B.begin(), C.begin(), pred);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

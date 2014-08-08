@@ -40,10 +40,5 @@ struct ReverseCopy
   {
     thrust::reverse_copy(A.begin(), A.end(), B.begin());
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 

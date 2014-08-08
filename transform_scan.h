@@ -25,11 +25,6 @@ struct TransformInclusiveScan
   {
     thrust::transform_inclusive_scan(A.begin(), A.end(), B.begin(), unary_op, binary_op);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -60,11 +55,6 @@ struct TransformExclusiveScan
   void operator()(void)
   {
     thrust::transform_exclusive_scan(A.begin(), A.end(), B.begin(), unary_op, init, binary_op);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 

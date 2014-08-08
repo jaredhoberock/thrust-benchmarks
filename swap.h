@@ -17,10 +17,5 @@ struct SwapRanges
   {
     thrust::swap_ranges(A.begin(), A.end(), B.begin());
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 

@@ -21,11 +21,6 @@ struct Reduce
   {
     thrust::reduce(A.begin(), A.end(), init, binary_op);
   }
-  
-  void reset(void)
-  {
-    // nothing to do
-  }
 };
 
 template <typename Container1,
@@ -61,11 +56,6 @@ struct ReduceByKey
   void operator()(void)
   {
     thrust::reduce_by_key(A.begin(), A.end(), B.begin(), C.begin(), D.begin(), binary_pred, binary_op);
-  }
-  
-  void reset(void)
-  {
-    // nothing to do
   }
 };
 
